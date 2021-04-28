@@ -8,7 +8,7 @@ public class StickyFoot : MonoBehaviour
 {
     public Transform stepPosition;
 
-    public AnimationCurve verticleStepMovement;
+    public AnimationCurve verticleStep;
 
     private Vector3 previousPlantedPosition;
     private Quaternion previousPlantedRotation = Quaternion.identity;
@@ -43,7 +43,7 @@ public class StickyFoot : MonoBehaviour
 
             Vector3 finalPosition = AnimMath.Lerp(previousPlantedPosition, plantedPosition, p);
 
-            finalPosition.y += verticleStepMovement.Evaluate(p);
+            finalPosition.y += verticleStep.Evaluate(p);
 
             transform.position = finalPosition;
 

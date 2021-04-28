@@ -2716,7 +2716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverBody: {fileID: 1839199625}
-  patrolingPoints:
+  roamingPoints:
   - {fileID: 121196084}
   - {fileID: 51167557}
   - {fileID: 1920687153}

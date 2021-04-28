@@ -33,9 +33,7 @@ namespace Jelsomeno
                 }
             }
 
-            ///////// Child Classes (Boss States):
-            ///
-
+            ///////// Child Classes 
             public class Idle : State
             {
 
@@ -56,7 +54,7 @@ namespace Jelsomeno
                     {
 
                         bossState.bossNav.enabled = false;
-                        return new States.DeathAnim();
+                        return new States.Death();
                     }
 
                     if(bossState.bulletAmount > 0 && bossState.CanSeePlayer(bossState.player, bossState.viewingDistance))
@@ -97,7 +95,7 @@ namespace Jelsomeno
                     {
 
                         bossState.bossNav.enabled = false;
-                        return new States.DeathAnim();
+                        return new States.Death();
                     }
 
                     if (!bossState.bossNav.pathPending && bossState.bossNav.remainingDistance <= 2f) 
@@ -128,7 +126,7 @@ namespace Jelsomeno
                     {
 
                         bossState.bossNav.enabled = false;
-                        return new States.DeathAnim();
+                        return new States.Death();
                     }
 
                     if (bossState.bulletAmount <= 0) return new States.Reload(bossState.reloadingTime); // reload 
@@ -170,7 +168,7 @@ namespace Jelsomeno
                 }
             }
 
-            public class DeathAnim : State
+            public class Death : State
             {
 
                 public override State Update()
@@ -187,13 +185,13 @@ namespace Jelsomeno
 
         private States.State state;
 
-        public Transform hoverBody;
+        public Transform Body;
 
         private NavMeshAgent bossNav;
 
-        public Transform[] patrolingPoints;
+        public Transform[] roamingPoints;
 
-        int currentPointPatrolling;
+        int currentPoint;
 
         public Transform player;
 
@@ -254,8 +252,8 @@ namespace Jelsomeno
 
         void IdleAnim()
         {
-            hoverBody.localPosition = Vector3.down * .25f * Mathf.Cos(Time.time);
-            hoverBody.localRotation = Quaternion.Euler(2f * Mathf.Sin(Time.time), 4f * Mathf.Sin(Time.time), 2f * Mathf.Cos(Time.time));
+            Body.localPosition = Vector3.down * .25f * Mathf.Cos(Time.time);
+            Body.localRotation = Quaternion.Euler(2f * Mathf.Sin(Time.time), 4f * Mathf.Sin(Time.time), 2f * Mathf.Cos(Time.time));
         }
 
         private bool CanSeePlayer(Transform player, float viewingDis)
@@ -317,17 +315,17 @@ namespace Jelsomeno
 
             if (!deathAnimLiftLegs)
             {
-                hoverBody.localPosition = Vector3.Slerp(hoverBody.localPosition, Vector3.up * 1f, 1f * Time.deltaTime);
+                Body.localPosition = Vector3.Slerp(Body.localPosition, Vector3.up * 1f, 1f * Time.deltaTime);
 
-                if (hoverBody.localPosition.y >= .95f) deathAnimLiftLegs = true;
+                if (Body.localPosition.y >= .95f) deathAnimLiftLegs = true;
 
                 return;
             }
 
-            if (hoverBody.localPosition.y > -2.5f)
+            if (Body.localPosition.y > -2.5f)
             {
-                hoverBody.localPosition = Vector3.Slerp(hoverBody.localPosition, Vector3.down * 2.8f, 1f * Time.deltaTime);
-                hoverBody.localRotation = Quaternion.Euler(1f * Mathf.Sin(5 * Time.time), 1f * Mathf.Sin(5 * Time.time), .8f * Mathf.Cos(5 * Time.time));
+                Body.localPosition = Vector3.Slerp(Body.localPosition, Vector3.down * 2.8f, 1f * Time.deltaTime);
+                Body.localRotation = Quaternion.Euler(1f * Mathf.Sin(5 * Time.time), 1f * Mathf.Sin(5 * Time.time), .8f * Mathf.Cos(5 * Time.time));
             }
 
         }
@@ -336,8 +334,8 @@ namespace Jelsomeno
         void PatrolingPointsSetter()
         {
             bossNav.updatePosition = true; 
-            bossNav.destination = patrolingPoints[currentPointPatrolling].position; 
-            currentPointPatrolling = (currentPointPatrolling + 1) % patrolingPoints.Length;
+            bossNav.destination = roamingPoints[currentPoint].position; 
+            currentPoint = (currentPoint + 1) % roamingPoints.Length;
         }
     }
 }

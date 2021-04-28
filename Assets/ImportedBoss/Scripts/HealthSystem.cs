@@ -51,6 +51,7 @@ namespace Jelsomeno
 
             if (health <= 0)
             {
+                
                 Destroy(gameObject);
             }
 
