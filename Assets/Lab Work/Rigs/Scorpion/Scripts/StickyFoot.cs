@@ -6,13 +6,9 @@ using UnityEngine.Animations.Rigging;
 
 public class StickyFoot : MonoBehaviour
 {
-    public static float moveThreshold = 2;
-
     public Transform stepPosition;
 
-    public AnimationCurve verticalStepMovement;
-
-    private Quaternion startingRotation;
+    public AnimationCurve verticleStepMovement;
 
     private Vector3 previousPlantedPosition;
     private Quaternion previousPlantedRotation = Quaternion.identity;
@@ -23,98 +19,73 @@ public class StickyFoot : MonoBehaviour
     private float timeLength = .25f;
     private float timeCurrent = 0;
 
-    public bool isAnimating
+    void Start()
     {
-        get
-        {
-            return (timeCurrent < timeLength);
-        }
+
     }
 
-    public bool footHasMoved = false;
 
-    Transform KneePole;
-
-    private void Start()
-    {
-        KneePole = transform.GetChild(0);
-
-        startingRotation = transform.localRotation;
-    }
-    
     void Update()
     {
-
-        if (isAnimating)
+        if (CheckIfCanStep())
         {
-            timeCurrent += Time.deltaTime;
+            DoRayCast();
+        }
+
+        if (timeCurrent < timeLength)
+        { 
+
+            timeCurrent += Time.deltaTime; 
 
             float p = timeCurrent / timeLength;
 
+            plantedPosition.y = Mathf.Clamp(plantedPosition.y, 2, 100);
+
             Vector3 finalPosition = AnimMath.Lerp(previousPlantedPosition, plantedPosition, p);
 
-            finalPosition.y += verticalStepMovement.Evaluate(p);
+            finalPosition.y += verticleStepMovement.Evaluate(p);
 
             transform.position = finalPosition;
 
-            transform.rotation = AnimMath.Lerp(previousPlantedRotation, plantedRotation, p);
-
-            Vector3 vFromCenter = transform.position = transform.parent.position;
-
-            vFromCenter.y = 0;
-            vFromCenter.Normalize();
-            vFromCenter *= 3;
-            vFromCenter.y += 2.5f;
-
-            KneePole.position = vFromCenter + transform.position;
-
         }
         else
-        {
+        { 
+            plantedPosition.y = Mathf.Clamp(plantedPosition.y, 2, 100);
             transform.position = plantedPosition;
-            transform.rotation = plantedRotation;
+
         }
 
 
     }
 
-    public bool TryToStep()
+    bool CheckIfCanStep()
     {
 
-        if (isAnimating) return false;
-        if (footHasMoved) return false;
-
         Vector3 vBetween = transform.position - stepPosition.position;
+        float threshold = 6;
 
-        if (vBetween.sqrMagnitude < moveThreshold * moveThreshold) return false;
-    
+        return (vBetween.sqrMagnitude > threshold * threshold);
+    }
+
+    void DoRayCast()
+    {
+
         Ray ray = new Ray(stepPosition.position + Vector3.up, Vector3.down);
 
         Debug.DrawRay(ray.origin, ray.direction * 3);
 
-        print("string");
-
         if (Physics.Raycast(ray, out RaycastHit hit, 3))
         {
-            // set up for begining of animation
+
+
             previousPlantedPosition = transform.position;
             previousPlantedRotation = transform.rotation;
 
-            //transform.localRotaion = startingRotation;
-
-            //setup end of animation
             plantedPosition = hit.point;
-            plantedRotation = 
-                Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation ;
+            plantedRotation = Quaternion.FromToRotation(transform.up, hit.normal);
 
-            //begin animation
             timeCurrent = 0;
-
-            footHasMoved = true;
-
-            return true;
-
         }
-        return false;
+
     }
 }

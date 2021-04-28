@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class ScorpionController : MonoBehaviour
 {
 
@@ -65,3 +66,4 @@ public class ScorpionController : MonoBehaviour
         //groundRing.localEulerAngles = new Vector3(0, h * 30, 0);
     }
 }
+*/
