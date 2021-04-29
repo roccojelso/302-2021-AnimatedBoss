@@ -840,27 +840,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepPosition: {fileID: 1153023330}
-  verticleStepMovement:
+  verticleStep:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -2.0779314
-      outSlope: -2.0779314
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.047473192
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -1016,27 +998,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepPosition: {fileID: 392668737}
-  verticleStepMovement:
+  verticleStep:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -2.0779314
-      outSlope: -2.0779314
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.047473192
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -2715,7 +2679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cdc8e3dfa5fee4597d2d41623168b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverBody: {fileID: 1839199625}
+  Body: {fileID: 1839199625}
   roamingPoints:
   - {fileID: 121196084}
   - {fileID: 51167557}
@@ -2984,27 +2948,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepPosition: {fileID: 1190673770}
-  verticleStepMovement:
+  verticleStep:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.9984741
-      value: 0.003868103
-      inSlope: -2.020688
-      outSlope: -2.020688
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.053686224
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -3889,27 +3835,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepPosition: {fileID: 2013211152}
-  verticleStepMovement:
+  verticleStep:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -2.0779314
-      outSlope: -2.0779314
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.047473192
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -6628,27 +6556,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepPosition: {fileID: 356708054}
-  verticleStepMovement:
+  verticleStep:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.9984741
-      value: 0.003868103
-      inSlope: -2.020688
-      outSlope: -2.020688
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.053686224
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -6927,27 +6837,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepPosition: {fileID: 1549703512}
-  verticleStepMovement:
+  verticleStep:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.9984741
-      value: 0.003868103
-      inSlope: -2.020688
-      outSlope: -2.020688
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.053686224
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -7271,12 +7163,20 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2569044224211281978, guid: 5d0c94c81ed7f3e45820132c48b9f7e7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569044224211281978, guid: 5d0c94c81ed7f3e45820132c48b9f7e7, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 3e308c14a869b6d49a43f965200f4914, type: 3}
     - target: {fileID: 6982627985626185810, guid: 5d0c94c81ed7f3e45820132c48b9f7e7, type: 3}
       propertyPath: walkSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976665740964256926, guid: 5d0c94c81ed7f3e45820132c48b9f7e7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8976665740964256926, guid: 5d0c94c81ed7f3e45820132c48b9f7e7, type: 3}
       propertyPath: m_audioClip
